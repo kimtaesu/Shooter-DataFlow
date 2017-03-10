@@ -1,22 +1,27 @@
 version: '2'
 services:
-    data-flow-server:
-        image: springcloud/spring-cloud-dataflow-server-kubernetes
-  # last gateway server run
- # server-gateway:
- #   build: ./Shooter-GateWay
- #   ports:
- #   - 9001:9001
- #   depends_on:
- #   - server-discovery
- #   environment:
- #       - "SPRING_PROFILES_ACTIVE=docker"
+  data-flow-server:
+    image: springcloud/spring-cloud-dataflow-server-kubernetes
+    ports:
+    - 9393:9393
+  sink:
+    build: ./Shooter-Sink
+    ports:
+    - 8123:8123
+  process:
+    build: ./Shooter-TimeProcess
+    ports:
+    - 8124:8124
+  source:
+    build: ./Shooter-TimeSource
+    ports:
+    - 8125:8125
 
-#  rabbitmq:
-#    image: rabbitmq:3-management
-#    ports:
-#    - 15672:15672
-#    environment:
-#    - RABBITMQ_DEFAULT_USER=test
-#    - RABBITMQ_DEFAULT_PASS=test
-#    - RABBITMQ_DEFAULT_VHOST=/test
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+    - 15672:15672
+    environment:
+    - RABBITMQ_DEFAULT_USER=test
+    - RABBITMQ_DEFAULT_PASS=test
+    - RABBITMQ_DEFAULT_VHOST=/test

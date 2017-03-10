@@ -1,42 +1,41 @@
-
 buildscript {
-	apply from: 'versions.gradle'
+    apply from: 'versions.gradle'
 
-	repositories {
-		mavenCentral()
-	}
-	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-	}
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
 }
 
 subprojects {
-	apply plugin: 'java'
-	apply plugin: 'idea'
-	apply plugin: 'org.springframework.boot'
+    apply plugin: 'java'
+    apply plugin: 'idea'
+    apply plugin: 'org.springframework.boot'
 
 
-	sourceCompatibility = 1.8
-	targetCompatibility = 1.8
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
 
-	[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
-	dependencies {
+    [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+    dependencies {
 //        compile('org.springframework.cloud:spring-cloud-starter-eureka')
-		compile('org.projectlombok:lombok:1.16.6')
-		// https://mvnrepository.com/artifact/com.google.guava/guava
+        compile('org.projectlombok:lombok:1.16.6')
+        // https://mvnrepository.com/artifact/com.google.guava/guava
 //        compile group: 'com.google.guava', name: 'guava', version: '21.0'
 //        compile('org.springframework.boot:spring-boot-starter-actuator')
-	}
-	repositories {
-		mavenLocal()
-		mavenCentral()
-	}
-	buildscript {
+    }
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+    buildscript {
 
-		dependencyManagement {
-			imports {
-				mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
-			}
-		}
-	}
+        dependencyManagement {
+            imports {
+                mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+            }
+        }
+    }
 }

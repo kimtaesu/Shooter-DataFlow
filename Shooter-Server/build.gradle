@@ -1,4 +1,0 @@
-dependencies {
-    compile('org.springframework.cloud:spring-cloud-starter-dataflow-server-local')
-    testCompile('org.springframework.boot:spring-boot-starter-test')
-}
